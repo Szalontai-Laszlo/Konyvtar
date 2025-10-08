@@ -8,12 +8,13 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form>
+                    <form name="adatok">
                         <div class="form-group">
                           <label for="author">Szerző</label>
                           <input type="text"
                                  class="form-control"
                                  id="author"
+								 required
                                  ng-model="authorModel">
                         </div>
                         <div class="form-group">
@@ -21,6 +22,7 @@
                           <input type="text"
                                  class="form-control"
                                  id="title"
+								 required
                                  ng-model="titleModel">
                         </div>
                         <div class="form-group">
@@ -28,13 +30,18 @@
                           <input type="text"
                                  class="form-control"
                                  id="category"
+								 required
                                  ng-model="categoryModel">
                         </div>
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Bezár</button>
-                    <button type="button" class="btn btn-primary">Hozzáad</button>
+                    <button type="button"
+							class="btn btn-secondary"
+							data-bs-dismiss="modal">Bezár</button>
+                    <button type="button"
+							class="btn btn-primary"
+							ng-disabled="adatok.$invalid">Hozzáad</button>
                 </div>
             </div>
         </div>
