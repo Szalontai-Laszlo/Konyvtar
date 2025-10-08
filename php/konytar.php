@@ -6,19 +6,14 @@ $db = new Database("konyvtar");
 
 $query = "SELECT `authors`.`name` AS 'Szerző',
                  `title` AS 'Cím',
-                 `categories`.`name` AS 'Kategória',
-                 `borrows`.`borrower_name` AS 'Kölcsönző Neve',
-                 `borrows`.`borrow_date` AS 'Kölcsönzés Dátuma'
+                 `categories`.`name` AS 'Kategória'
           FROM `books`
 
           JOIN `authors`
           ON `books`.`author_id` = `authors`.`id`
           
           JOIN `categories`
-          ON `books`.`category_id` = `categories`.`id`
-
-          JOIN `borrows`
-          ON `books`.`id` = `borrows`.`book_id`";
+          ON `books`.`category_id` = `categories`.`id`";
 
 $result = $db -> execute($query);
 
