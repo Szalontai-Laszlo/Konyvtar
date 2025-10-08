@@ -4,7 +4,7 @@ angular.module('konyvtar', [])
     '$http',
     function ($scope, $http) {
         $scope.getBooks = () => {
-            $http.get('./php/konytar.php')
+            $http.get('./php/konyvtar.php')
                 .then(res => {
                     if(!res.error){
                         $scope.books = res.data.data;
@@ -15,5 +15,6 @@ angular.module('konyvtar', [])
                     }
                 })
         }
+        $scope.getBooks();
     }
 ])
