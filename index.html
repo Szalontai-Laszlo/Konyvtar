@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+    <title>Könyvtár</title>
+    <link rel="stylesheet" href="../components/bootstrap/5.3.8/css/bootstrap.min.css">
+</head>
+<body ng-app="konyvtar"
+      ng-controller="konyvtarCtrl">
+
+    <div class="container mt-3">
+        <h1 class="text-center">Könyveink</h1>
+        <div class="row">
+            <table class="table table-bordered table-sm table-striped">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Szerző</th>
+                        <th>Cím</th>
+                        <th>Kategória</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="book in books track by $index">
+                        <td>{{ $index }}</td>
+                        <td>{{ book.szerzo }}</td>
+                        <td>{{ book.cim }}</td>
+                        <td>{{ book.kategoria }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="row">
+            <button class="btn btn-primary"
+                    ng-click="addBook()">
+                Hozzáadás
+            </button>
+        </div>
+    </div>
+
+    <script src="../components/angular-js/1.8.2/js/angular.min.js"></script>
+    <script src="./js/app.js"></script>
+</body>
+</html>

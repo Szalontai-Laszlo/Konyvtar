@@ -4,9 +4,9 @@ require_once("../../common/php/environment.php");
 
 $db = new Database("konyvtar");
 
-$query = "SELECT `authors`.`name` AS 'Szerző',
-                 `title` AS 'Cím',
-                 `categories`.`name` AS 'Kategória'
+$query = "SELECT `authors`.`name` AS 'szerzo',
+                 `title` AS 'cim',
+                 `categories`.`name` AS 'kategoria'
           FROM `books`
 
           JOIN `authors`
