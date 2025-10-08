@@ -1,0 +1,34 @@
+<!-- Container -->
+<div class="container-fluid bg-dark mt-4 p-3 pb-2">
+  
+  <!-- Social media -->
+  <div class="row mt-5">
+    <ul class="list-unstyled text-center mb-0"
+        ng-init="socialMedia=[{icon:'fab fa-facebook-f',  href:'https://www.facebook.com/makokeri/?locale=hu_HU', bg:'#3b5998'}, 
+                              {icon:'fab fa-google',      href:'https://www.keri.mako.hu/', bg:'#dd4b39'},
+                              {icon:'fab fa-tiktok',      href:'https://www.tiktok.com/@makokeri', bg:'#ac2bac'},
+                              {icon:'fab fa-github',      href:'https://github.com/norbi1234560/szalagavatoTanc', bg:'#333333'}]">
+      <li class="d-inline-block mx-sm-2"
+          ng-repeat="sm in socialMedia">
+        <a class="btn text-white btn-floating mx-1"
+           ng-class="{'disabled': state.group==='user'}"
+           style="background-color: #3b5998;"
+           ng-style="{'backgroundColor': sm.bg}"
+           href="{{sm.href}}"
+           target="_blank"
+           role="button">
+          <i ng-class="sm.icon"></i>
+        </a>
+      </li>
+    </ul>
+  </div>
+
+  <!-- Copyright -->
+  <div class="container mt-3 px-5">
+    <div class="row">
+      <p class="fs-md text-center my-0 border-top text-white">
+        <span>&copy; {{currentLang.footer.copyright}}</span>
+      </p>
+    </div>
+  </div>
+</div>
