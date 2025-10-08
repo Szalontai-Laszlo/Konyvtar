@@ -55,6 +55,20 @@ angular.module('konyvtar', [
                     }
                 })
         }
+		$scope.addBook = () => {
+			$http.POST('./php/addBook.php', {author: $scope.authorModel,
+											 title: $scope.titleModel,
+											 category: $scope.categoryModel}
+			)
+			.then(res => {
+				if(!res.error){
+					alert('Sikeres Felvétel!');
+					$scope.getBooks();
+				}else{
+					alert('Sikertelen Felvétel:' + res.error);
+				}
+			})
+		}
         $scope.getBooks();
     }
 ])
