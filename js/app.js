@@ -1,4 +1,7 @@
-angular.module('konyvtar', [])
+angular.module('konyvtar', [
+    'ui.router',
+    'app.common'
+])
 .config([
     '$stateProvider',
     '$urlRouterProvider',
