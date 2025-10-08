@@ -1,0 +1,29 @@
+<div class="container mt-3">
+    <h1 class="text-center">Könyveink</h1>
+    <div class="row">
+        <table class="table table-bordered table-sm table-striped">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>Szerző</th>
+                    <th>Cím</th>
+                    <th>Kategória</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="book in books track by $index">
+                    <td>{{ $index }}</td>
+                    <td>{{ book.szerzo }}</td>
+                    <td>{{ book.cim }}</td>
+                    <td>{{ book.kategoria }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="row">
+        <button class="btn btn-primary"
+                ng-click="addBook()">
+            Hozzáadás
+        </button>
+    </div>
+</div>

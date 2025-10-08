@@ -1,5 +1,42 @@
 angular.module('konyvtar', [])
-.controller('konyvtarCtrl', [
+.config([
+    '$stateProvider',
+    '$urlRouterProvider',
+    ($stateProvider, $urlRouterProvider) => {
+      $stateProvider
+        .state('root', {
+          abstract: true,
+          views: {
+            '@': {
+              templateUrl: './html/root.html'
+            },
+            'header@root': {
+              templateUrl: './html/header.html'
+            },
+            'footer@root': {
+              templateUrl: './html/footer.html'
+            },
+            'modal@root': {
+              templateUrl: './html/modal.html'
+            }
+          }
+        })
+        .state('konyvek', {
+          url: '/',
+          parent: 'root',
+          controller: 'konyvekController',
+          templateUrl: './html/konyvek.html'
+        })
+        .state('kolcsonzesek', {
+          url: '/',
+          parent: 'root',
+          controller: 'kolcsonzesekController',
+          templateUrl: './html/kolcsonzesek.html'
+        })
+      $urlRouterProvider.otherwise('/');
+    }
+])
+.controller('konyvekCtrl', [
     '$scope',
     '$http',
     function ($scope, $http) {
