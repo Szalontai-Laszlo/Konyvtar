@@ -27,13 +27,13 @@ angular.module('konyvtar', [
         .state('konyvek', {
           url: '/',
           parent: 'root',
-          controller: 'konyvekController',
+          controller: 'konyvekCtrl',
           templateUrl: './html/konyvek.html'
         })
         .state('kolcsonzesek', {
           url: '/',
           parent: 'root',
-          controller: 'kolcsonzesekController',
+          controller: 'kolcsonzesekCtrl',
           templateUrl: './html/kolcsonzesek.html'
         })
       $urlRouterProvider.otherwise('/');
