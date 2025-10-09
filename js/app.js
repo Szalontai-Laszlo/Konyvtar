@@ -63,8 +63,9 @@ angular.module('konyvtar', [
 		    	.then(res => {
 		    		if(!res.data.error){
 		    			alert('Sikeres Felvétel!');
-              $scope.getBooks();
-              $scope.$applyAsync();
+                        $scope.getBooks();
+                        $scope.$applyAsync();
+                        
 		    		}else{
 		    			alert('Sikertelen Felvétel:' + res.data.error);
 		    		}
@@ -78,6 +79,17 @@ angular.module('konyvtar', [
     '$scope',
     '$http',
     function ($scope, $http){
+        $scope.getBooks = () => {
+            $http.get('./php/konyvtar.php')
+                .then(res => {
+                    if(!res.data.error){
+                        $scope.books = res.data.data;
+                        $scope.$applyAsync();
+                    } else{
+                        console.log("Hiba:" + res.error);
+                    }
+                })
+        }
         $scope.getBorrow = () => {
             $http.get('./php/kolcsonzes.php')
             .then(res => {
@@ -91,5 +103,6 @@ angular.module('konyvtar', [
             })
         }
         $scope.getBorrow();
+        $scope.getBooks();
     }
 ])
