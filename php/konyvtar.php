@@ -17,4 +17,6 @@ $query = "SELECT `authors`.`name` AS 'szerzo',
 
 $result = $db -> execute($query);
 
+$db = null;
+
 Util::setResponse($result);

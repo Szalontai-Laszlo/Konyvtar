@@ -18,4 +18,6 @@ $query = "SELECT `borrows`.`borrower_name` AS 'kolcsonzo',
 
 $result = $db -> execute($query);
 
+$db = null;
+
 Util::setResponse($result);
