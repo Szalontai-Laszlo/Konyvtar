@@ -26,18 +26,18 @@ angular.module('konyvtar', [
           }
         })
         .state('konyvek', {
-          url: '/',
+          url: '/konyvek',
           parent: 'root',
           controller: 'konyvekCtrl',
           templateUrl: './html/konyvek.html'
         })
         .state('kolcsonzesek', {
-          url: '/',
+          url: '/kolcsonzes',
           parent: 'root',
           controller: 'kolcsonzesekCtrl',
           templateUrl: './html/kolcsonzesek.html'
         })
-      $urlRouterProvider.otherwise('/');
+      $urlRouterProvider.otherwise('/konyvek');
     }
 ])
 .controller('konyvekCtrl', [
@@ -72,5 +72,24 @@ angular.module('konyvtar', [
 		    	.catch(e => {console.log(e)})
 		    }
         $scope.getBooks();
+    }
+])
+.controller('kolcsonzesekCtrl', [
+    '$scope',
+    '$http',
+    function ($scope, $http){
+        $scope.getBorrow = () => {
+            $http.get('./php/kolcsonzes.php')
+            .then(res => {
+                if(!res.data.error){
+                    $scope.borrows = res.data.data;
+                    console.log($scope.borrows)
+                    $scope.$applyAsync();
+                } else{
+                    console.log("Hiba:" + res.error);
+                }
+            })
+        }
+        $scope.getBorrow();
     }
 ])

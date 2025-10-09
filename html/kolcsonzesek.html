@@ -1,0 +1,30 @@
+<div class="container mt-3">
+    <h1 class="text-center">Kölcsönzések</h1>
+    <div class="row">
+        <table class="table table-bordered table-sm table-striped">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>Szerző</th>
+                    <th>Cím</th>
+                    <th>Dátum</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="borrow in borrows track by $index">
+                    <td>{{ $index }}</td>
+                    <td>{{ borrow.szerzo }}</td>
+                    <td>{{ borrow.cim }}</td>
+                    <td>{{ borrow.datum }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="row">
+        <button class="btn btn-primary"
+                data-bs-toggle="modal"
+                data-bs-target="#borrowAdd">
+            Hozzáadás
+        </button>
+    </div>
+</div>
