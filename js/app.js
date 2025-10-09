@@ -56,9 +56,10 @@ angular.module('konyvtar', [
                 })
         }
 		$scope.addBook = () => {
-			$http.POST('./php/addBook.php', {author: $scope.authorModel,
-											 title: $scope.titleModel,
-											 category: $scope.categoryModel}
+			let a = 0;
+			$http.post('./php/addBook.php', {'author': $scope.authorModel,
+											 'title': $scope.titleModel,
+											 'category': $scope.categoryModel}
 			)
 			.then(res => {
 				if(!res.error){
@@ -68,6 +69,7 @@ angular.module('konyvtar', [
 					alert('Sikertelen Felvétel:' + res.error);
 				}
 			})
+			.catch(e => {console.log(e)})
 		}
         $scope.getBooks();
     }
