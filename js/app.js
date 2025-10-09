@@ -20,7 +20,8 @@ angular.module('konyvtar', [
               templateUrl: './html/footer.html'
             },
             'modal@root': {
-              templateUrl: './html/modal.html'
+              templateUrl: './html/modal.html',
+              controller: 'konyvekCtrl'
             }
           }
         })
@@ -46,31 +47,30 @@ angular.module('konyvtar', [
         $scope.getBooks = () => {
             $http.get('./php/konyvtar.php')
                 .then(res => {
-                    if(!res.error){
+                    if(!res.data.error){
                         $scope.books = res.data.data;
-                        console.log($scope.books);
                         $scope.$applyAsync();
                     } else{
                         console.log("Hiba:" + res.error);
                     }
                 })
         }
-		$scope.addBook = () => {
-			let a = 0;
-			$http.post('./php/addBook.php', {'author': $scope.authorModel,
-											 'title': $scope.titleModel,
-											 'category': $scope.categoryModel}
-			)
-			.then(res => {
-				if(!res.error){
-					alert('Sikeres Felvétel!');
-					$scope.getBooks();
-				}else{
-					alert('Sikertelen Felvétel:' + res.error);
-				}
-			})
-			.catch(e => {console.log(e)})
-		}
+		    $scope.addBook = function() {
+		    	$http.post('./php/addBook.php', {'author': $scope.authorModel,
+		    									 'title': $scope.titleModel,
+		    									 'category': $scope.categoryModel}
+		    	)
+		    	.then(res => {
+		    		if(!res.data.error){
+		    			alert('Sikeres Felvétel!');
+              $scope.getBooks();
+              $scope.$applyAsync();
+		    		}else{
+		    			alert('Sikertelen Felvétel:' + res.data.error);
+		    		}
+		    	})
+		    	.catch(e => {console.log(e)})
+		    }
         $scope.getBooks();
     }
 ])

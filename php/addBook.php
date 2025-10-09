@@ -4,42 +4,47 @@ require_once("../../common/php/environment.php");
 
 $db = new Database("konyvtar");
 
-$args = Util::getArgs();
+$argsBase = Util::getArgs();
 
+$args = ['author' => $argsBase['author']];
 $query = "SELECT `name` FROM `authors` WHERE `name` = :author";
 
 $result = $db -> execute($query, $args);
 
 if(!$result)
 {
-	$query = "INSERT INTO `authors`(`name`) VALUES (':author')";
+	$query = "INSERT INTO `authors`(`name`) VALUES (:author)";
 	
 	$result = $db -> execute($query, $args);
 }
 
+$args = ['category' => $argsBase['category']];
 $query = "SELECT `name` FROM `categories` WHERE `name` = :category";
 
 $result = $db -> execute($query, $args);
 
 if(!$result)
 {
-	$query = "INSERT INTO `categories`(`name`) VALUES (':category')";
+	$query = "INSERT INTO `categories`(`name`) VALUES (:category)";
 	
 	$result = $db -> execute($query, $args);
 }
 
+$args = ['title' => $argsBase['title']];
 $query = "SELECT `title` FROM `books` WHERE `title` = :title";
 
 $result = $db -> execute($query, $args);
 
 if($result)
 {
-	Util::setError();
+	Util::setError('Van már ilyen könyv');
 }
 
 if(!$result)
 {
-	$query = "UPDATE `books` SET `title`= :title, `author_id`= SELECT `id` FROM `authors` WHERE `name` = :author, `category_id` = SELECT `id` WHERE `name` = :category";
+	$args = $argsBase;
+
+	$query = "INSERT INTO `books` (`title`,`author_id`,`category_id`) VALUES (:title, (SELECT `id` FROM `authors` WHERE `name` = :author), (SELECT `id` FROM `categories` WHERE `name` = :category))";
 	
 	$result = $db -> execute($query, $args);
 }
