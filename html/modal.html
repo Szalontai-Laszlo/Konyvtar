@@ -1,4 +1,5 @@
-<div class="modal-dialog modal-dialog-centered">
+<!-- Books -->
+<div class="modal-dialog modal-dialog-centered" ng-controller="konyvekCtrl">
     <div class="modal fade" id="bookAdd" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
         aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -32,6 +33,61 @@
                                  id="category"
 								 required
                                  ng-model="categoryModel">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button"
+							class="btn btn-secondary"
+							data-bs-dismiss="modal">
+						Bezár
+					</button>
+                    <button type="button"
+							class="btn btn-primary"
+							ng-disabled="adatok.$invalid"
+							ng-click="addBook()">
+						Hozzáad
+					</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Borrow -->
+<div class="modal-dialog modal-dialog-centered" ng-controller="kolcsonzesekCtrl">
+    <div class="modal fade" id="borrowAdd" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="borrowAddLabel">Könyv Kölcsönzése</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form name="adatok">
+                        <div class="form-group">
+                          <label for="title">Név</label>
+                          <input type="text"
+                                 class="form-control"
+                                 id="name"
+								 required
+                                 ng-model="nameModel">
+                        </div>
+                        <div class="form-group mt-3">
+                          <label for="books">Könyv</label>
+                          <select name="book" id="books">
+                            <option ng-repeat="book in books" value="{{book.cim}}">{{book.cim}}</option>
+                          </select>
+                        </div>
+                        <div class="form-group mt-3">
+                          <label for="category">Dátum</label>
+                          <input type="date"
+                                 class="form-control"
+                                 id="date"
+                                 min="{{currentDate}}"
+								 required
+                                 ng-model="dateModel">
                         </div>
                     </form>
                 </div>

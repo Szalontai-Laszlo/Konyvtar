@@ -21,7 +21,6 @@ angular.module('konyvtar', [
             },
             'modal@root': {
               templateUrl: './html/modal.html',
-              controller: 'konyvekCtrl'
             }
           }
         })
@@ -79,12 +78,24 @@ angular.module('konyvtar', [
     '$scope',
     '$http',
     function ($scope, $http){
+        const formatDateISO = (date) => {
+            return date.toLocaleDateString('en-CA');  
+        };
+
+        $scope.currentDate = new Date();
+        console.log(formatDateISO($scope.currentDate));
+        // $scope.maiEv = new Date().getFullYear().toString();
+        // $scope.maiHonap = (new Date().getMonth()+1).toString();
+        // $scope.maiNap = new Date().getDate().toString();
+        // $scope.maiDatum = $scope.maiEv + $scope.maiHonap + $scope.maiNap
+        console.log($scope.currentDate);
         $scope.getBooks = () => {
             $http.get('./php/konyvtar.php')
                 .then(res => {
                     if(!res.data.error){
                         $scope.books = res.data.data;
                         $scope.$applyAsync();
+                        console.log($scope.books);
                     } else{
                         console.log("Hiba:" + res.error);
                     }

@@ -5,6 +5,7 @@
             <thead>
                 <tr>
                     <th></th>
+                    <th>Kölcsönző Neve</th>
                     <th>Szerző</th>
                     <th>Cím</th>
                     <th>Dátum</th>
@@ -13,6 +14,7 @@
             <tbody>
                 <tr ng-repeat="borrow in borrows track by $index">
                     <td>{{ $index }}</td>
+                    <td>{{ borrow.kolcsonzo}}</td>
                     <td>{{ borrow.szerzo }}</td>
                     <td>{{ borrow.cim }}</td>
                     <td>{{ borrow.datum }}</td>
@@ -24,7 +26,7 @@
         <button class="btn btn-primary"
                 data-bs-toggle="modal"
                 data-bs-target="#borrowAdd">
-            Hozzáadás
+            Kölcsönzés
         </button>
     </div>
 </div>
