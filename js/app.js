@@ -71,6 +71,19 @@ angular.module('konyvtar', [
 		    	})
 		    	.catch(e => {console.log(e)})
 		    }
+        $scope.removeBook = (bookName) => {
+            $http.post('./php/removeBook.php', {name: bookName})
+            .then(res => {
+                if(!res.data.error){
+		    			alert('Sikeres Törlés!');
+                        $scope.getBooks();
+                        $scope.$applyAsync();
+                        
+		    	}else{
+		    		alert('Sikertelen Törlés:' + res.data.error);
+		    	}
+            })
+        }
         $scope.getBooks();
     }
 ])
@@ -112,6 +125,24 @@ angular.module('konyvtar', [
                     console.log("Hiba:" + res.error);
                 }
             })
+        }
+        $scope.addBorrow = () => {
+          $http.post('./php/addBorrow.php', {
+                      name: $scope.nameModel,
+                      date: $scope.dateModel,
+                      title: $scope.titleModel
+
+          })
+          .then(res =>{
+            if(!res.data.error){
+		    			alert('Sikeres Felvétel!');
+                        $scope.getBorrows();
+                        $scope.$applyAsync();
+                        
+		    		}else{
+		    			alert('Sikertelen Felvétel:' + res.data.error);
+		    		}
+          })
         }
         $scope.getBorrow();
         $scope.getBooks();

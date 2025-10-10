@@ -8,6 +8,7 @@
                     <th>Szerző</th>
                     <th>Cím</th>
                     <th>Kategória</th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
@@ -16,6 +17,12 @@
                     <td>{{ book.szerzo }}</td>
                     <td>{{ book.cim }}</td>
                     <td>{{ book.kategoria }}</td>
+                    <td class="text-center w-auto">
+                        <button class="btn btn-danger"
+                                ng-click="removeBook(book.cim)">
+                            X
+                        </button>
+                    </td>
                 </tr>
             </tbody>
         </table>
